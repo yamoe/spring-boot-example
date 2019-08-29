@@ -1,0 +1,12 @@
+# dev
+logging:
+  level:
+    root: info
+    com.example.arti: info
+
+spring:
+  profiles:
+    include:
+      - console-logging
+      - file-logging
+

@@ -1,0 +1,67 @@
+
+plugins {
+	id 'org.springframework.boot' version '2.1.7.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+bootJar {
+	archiveFileName = 'arti.jar'
+}
+
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	// jsp
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:9.0.24'
+	implementation 'javax.servlet:jstl:1.2'
+
+	// thymeleaf
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+	// mybatis, mysql
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.0'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'mysql:mysql-connector-java'
+
+}
+
+/*
+	gradle build
+	> SPRING_PROFILES_ACTIVE=core gradle clean bootRun -Pprofile=prod
+ */
+sourceSets {
+	ext.profile = (!project.hasProperty('profile') || !profile) ? 'dev' : profile
+	println "current profile : ${profile}"
+	main {
+		java {
+			srcDirs "src/main/java"
+		}
+		resources {
+			srcDirs "src/main/resources", "src/main/resources/env/${profile}/"
+		}
+	}
+}

@@ -1,0 +1,12 @@
+# prod
+logging:
+  level:
+    root: warn
+    com.example.arti: warn
+
+spring:
+  profiles:
+    include:
+      - console-logging
+      - file-logging
+
