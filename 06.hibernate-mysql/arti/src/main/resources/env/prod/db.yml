@@ -29,19 +29,17 @@ spring:
         connection-test-query: SELECT 1 FROM DUAL
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-    properties:
-      hibernate:
-        format_sql: false
     generate-ddl: false
     open-in-view: false
+    properties:
+      hibernate:
+        show_sql: false
+        format_sql: false
+        use_sql_comments: false
+
 
 logging:
   level:
     org:
-      hibernate:
-        SQL: WARN
-        type:
-          descriptor:
-            sql:
-              BasicBinder: WARN
+      hibernate: error
 
