@@ -43,8 +43,8 @@ public class MysqlDatabaseConfig {
     }
 
     @Primary
-    @Bean(name = "oracleSqlSessionTemplate")
-    public SqlSessionTemplate oracleSqlSessionTemplate(SqlSessionFactory mysqlSqlSessionFactory) throws Exception {
+    @Bean(name = "mysqlSqlSessionTemplate")
+    public SqlSessionTemplate mysqlSqlSessionTemplate(SqlSessionFactory mysqlSqlSessionFactory) throws Exception {
         return new SqlSessionTemplate(mysqlSqlSessionFactory);
     }
 
