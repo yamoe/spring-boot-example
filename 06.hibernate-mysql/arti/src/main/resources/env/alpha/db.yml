@@ -1,0 +1,47 @@
+spring:
+  mysql:
+    datasource:
+      hikari:
+        jdbc-url: jdbc:mysql://192.168.56.101:3306/testdb?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
+        username: user1
+        password: user1A!@#
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        minimum-idle: 1
+        maximum-pool-size: 10
+        connection-timeout: 20000
+        idle-timeout: 300000
+        max-lifetime: 1200000
+        auto-commit: true
+        connection-test-query: SELECT 1 FROM DUAL
+  jpa-mysql:
+    datasource:
+      hikari:
+        jdbc-url: jdbc:mysql://192.168.56.101:3306/testdb?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
+        username: user1
+        password: user1A!@#
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        minimum-idle: 1
+        maximum-pool-size: 10
+        connection-timeout: 20000
+        idle-timeout: 300000
+        max-lifetime: 1200000
+        auto-commit: true
+        connection-test-query: SELECT 1 FROM DUAL
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    properties:
+      hibernate:
+        format_sql: false
+    generate-ddl: false
+    open-in-view: false
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: INFO
+        type:
+          descriptor:
+            sql:
+              BasicBinder: INFO
+
